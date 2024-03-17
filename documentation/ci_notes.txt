@@ -1,0 +1,255 @@
+# ci-news_note
+env gak jalan cuk
+kasih ini errorin di controller tetap gak jalan
+ubah php ini di folder apache2 juga gak jalan
+
+di cli belum di coba
+
+uncomment display_errors = On;
+php.ini cli gak bisa
+php.ini apache2 gak bisa
+
+di env tidak bisa // env masih belum jalan
+from:
+# CI_ENVIRONMENT = production
+to:
+# CI_ENVIRONMENT = deveplopment
+
+
+di env tidak bisa // env masih belum jalan, belum ok karena env harus dirubah dulu ke .env
+from:
+# CI_ENVIRONMENT = production
+to:
+# CI_ENVIRONMENT = deveplopment // ini jadina ok ya!
+
+
+di index.php bisa ubah 'production' ke 'deveplopment' - ini OK
+
+from:
+
+// Define ENVIRONMENT
+if (! defined('ENVIRONMENT')) {
+    define('ENVIRONMENT', env('CI_ENVIRONMENT', 'production'));
+}
+
+to:
+
+// Define ENVIRONMENT
+if (! defined('ENVIRONMENT')) {
+    define('ENVIRONMENT', env('CI_ENVIRONMENT', 'development'));
+}
+
+next:
+- buat virtual host?
+- langsung database
+
+harus bangun dulu
+baru coba install
+Extension: Codeigniter 4 extension pack
+biar tau bedana
+
+dan cepat langsung bangun aja
+
+
+Bangun Aplikasi "Blog Post CodeIgniter 4 Ajax CRUD"
+"blog_post_ci4"
+
+
+# blog_post_note
+
+1. composer create-project codeigniter4/appstarter blog-post -vvv
+2. change env to .env
+3. update the .env
+from:
+# CI_ENVIRONMENT = production
+to:
+# CI_ENVIRONMENT = development
+
+app.baseURL = 'http://localhost:8080/'
+
+database.default.hostname = localhost
+database.default.database = ci_crud_ajax
+database.default.username = root
+database.default.password =
+database.default.DBDriver = MySQLi
+
+database.default.port = 3306 - add sendiri
+
+5. php spark db:create blog_post
+
+6. create controller model dan migration
+
+- migration
+create table dengan php spark
+$php spark make:migration posts
+created blog-post/app/Database/Migrations/2024-03-14-192122_Posts.php
+
+update blog-post/app/Database/Migrations/2024-03-14-192122_Posts.php
+tambahin fields table pada file 2024-03-14-192122_Posts.php 
+
+$php spark migrate: bisa disini
+
+- model
+$php spark make:model PostModel
+created blog-post/app/Models/PostModel.php
+update PostModel.php
+
+$php spark migrate: atau disini
+
+- controller
+$php spark make:controller PostController
+created blog-post/app/Controllers/PostController.php
+update PostController.php
+
+
+
+harus buat history git nya
+biar bisa di trace proses developmentnya
+
+gua buat beberapa aja aplikasi ci 4 jquery ajax crud
+complete application codeigniter4
+
+simple-employee
+1. composer create-project codeigniter4/appstarter simple-employee -vvv
+
+2. setup git local:
+
+1. git init
+$cd simple-employee
+┌──[~/CI/simple-employee]
+└─$ ls
+app  builds  composer.json  composer.lock  env  LICENSE  phpunit.xml.dist  preload.php  public  README.md  spark  tests  vendor  writable
+                                                                                                                                                                                   
+┌──[~/CI/simple-employee]
+└─$ git init                                                    
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint: 
+hint: 	git config --global init.defaultBranch <name>
+hint: 
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint: 
+hint: 	git branch -m <name>
+Initialized empty Git repository in /home/n0tx/CI/simple-employee/.git/
+
+2. git config --local user.name "n0tx" 
+3. git config --local user.email "rcandra91@msn.com"
+4. git add .
+5. git commit -m "Initialize commit Simple Employee Codeigniter 4"
+6. git branch -M main
+7. buat git remote via github browser
+
+8. add git remote ke local git
+git remote add origin https://github.com/n0tx/simple-employee.git
+
+new git token, 16 March 2024
+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
+
+9. git push -u origin main
+Username for 'https://github.com': n0tx
+Password for 'https://n0tx@github.com': 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
+
+hapus 2fa, ok uda
+2fa dihapus karena nyusahin login dari github browser buat securityna selalu minta 2fa auth mobile github
+digit number, klo gak dia pakai authenticator application
+
+jadi dihapus aja, jadi pakai username, password biasa klo mau sign in github
+
+klo mau operasi push, pakai token, token baru ud di create
+
+Sekarang mau buat aplikasi simple-employee
+-- ubah gitignore .env bisa di push
+10. change env to .env
+update the .env
+from:
+# CI_ENVIRONMENT = production
+to:
+# CI_ENVIRONMENT = development
+
+# ENVIRONMENT
+CI_ENVIRONMENT = development
+# APP
+app.baseURL = 'http://localhost:8080/'
+# DATABASE
+database.default.hostname = localhost
+database.default.database = ci_crud_ajax
+database.default.username = root
+database.default.password =
+database.default.DBDriver = MySQLi
+database.default.port = 3306
+
+2 controller + method bisa pakai 1 view
+1 view di buat kondisi
+
+
+test view
+
+
+11. php spark db:create simple_employee
+12. php spark migrate:create employees
+13. php spark migrate
+14. php spark make:model EmployeeModel
+15. php spark make:controller EmployeeController
+
+
+16. set routes
+17. create index method
+
+add controller list employee and add new employee
+add view list employee and add new employee
+add route list employee and add new employee
+
+create edit employee form
+
+submit the updated employee data
+
+delete employee data
+ini pas terakhir push aja
+buat directory baru
+documentation
+
+brrti dr directory storage shared android bisa
+kalau mau operasi git update dr terminal directory
+aja.
+
+# student
+termux, android, codeigniter 4, mariadb, git, acode
+1. composer create-project codeigniter4/appstarter student -vvv
+
+nyari acode gak ketemu
+ps ax
+coba buka cd /, files usr var sevice
+karena ada bbrp proses yg jlnin runsv lighthttpd, service yg tidak dperlukan lg, atau itu dari php spark serve ya, ywd coba dcheck aj.
+
+? ad masalah di git clone simple employee
+gak bisa di git status
+- pake perintah git ini di directory project clone
+git config --global --add safe.directory /storage/emulated/0/CI/simple-employee
+- buat stage semua perubahan
+git add .
+- buat liat list file perubahan
+git status
+- buat liat isi file perubahan local dan remote
+git diff @{upstream}
+- buat undo add file
+git reset app/Controllers/EmployeeController.php
+- buat undo modified file git
+git restore app/Controllers/EmployeeController.php
+- check lagi list file perubahan, setelah modified file nya di undo
+git status
+
+! klo kerja beres ini prioritas yang akan dilakukan
+ 1. programming logic, algorithm, create app
+ 2. english fluent
+ 3. hacking logic, algorithm, create app
+ 
+ udahlah men jgn terbengkalai gw gara-gara hacking
+ 
+ mulai aja buat app
+ nyicil
+ 1. mulai belajar flutter
+ 2. buat ui sejarah pembayaran air cloud
+ 
+2. composer instal -vvv
