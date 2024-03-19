@@ -28,7 +28,7 @@ class StudentController extends BaseController
             'name' => $this->request->getVar('txtName'),
             'address'  => $this->request->getVar('txtAddress'),
             ];
-        $save = $model->insert_data($data);
+        $save = $model->save($data);
         if($save != false)
         {
             $data = $model->where('id', $save)->first();
